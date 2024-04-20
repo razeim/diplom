@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Form</title>
+</head>
+<body>
+    <h2>Upload Files</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ .userId }}"> <!-- Скрытое поле для передачи userId -->
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*"><br>
+        <label for="audio">Audio:</label>
+        <input type="file" id="audio" name="audio" accept="audio/*"><br>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" min="0" step="0.01"><br>
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>

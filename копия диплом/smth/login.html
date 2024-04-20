@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up</title>
+    <script src="https://unpkg.com/htmx.org@1.6.0/dist/htmx.min.js"></script> <!-- Подключаем библиотеку HTMX -->
+</head>
+<body>
+    <h1>Login </h1>
+    <div id="loginForm" hx-target="#loginResult"> <!-- Используем атрибуты hx-post и hx-target -->
+        <h2>Login</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button type="button" onclick="login()">Login</button> <!-- Вызываем функцию login() при нажатии на кнопку -->
+    </div>
+    <div id="loginResult"></div> <!-- Этот блок будет обновлен с помощью HTMX -->
+    
+    <script>
+        function login() {
+            // Получаем значения из полей ввода
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            
+            // Создаем объект JSON с данными
+            var data = {
+                email: email,
+                password: password
+            };
+            
+            // Отправляем POST-запрос на сервер с данными в формате JSON
+            fetch('/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Обновляем результат в блоке loginResult
+                document.getElementById("loginResult").innerHTML = JSON.stringify(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

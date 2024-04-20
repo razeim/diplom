@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проигрывание аудиофайла</title>
+    <!-- Подключаем стили для стилизации проигрывателя -->
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+    <!-- Обертка для контента -->
+    <div class="container">
+        <!-- Заголовок страницы -->
+        <h1>Проигрывание аудиофайла: Название вашего аудиофайла</h1>
+        <!-- Проигрыватель аудио -->
+        <div class="audio-player">
+            <audio controls>
+                <!-- Используем ссылку на аудиофайл -->
+                <source src="{{.audioURL}}" type="audio/mpeg">
+                Ваш браузер не поддерживает элемент audio.
+            </audio>
+        </div>
+    </div>
+    <!-- Подключаем библиотеку htmx -->
+    <script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
+</body>
+</html>
